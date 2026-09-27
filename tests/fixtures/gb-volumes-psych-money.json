@@ -1,0 +1,55 @@
+{
+  "kind": "books#volumes",
+  "totalItems": 2,
+  "items": [
+    {
+      "kind": "books#volume",
+      "id": "gbFixture001",
+      "volumeInfo": {
+        "title": "The Psychology of Money",
+        "subtitle": "Timeless lessons on wealth, greed, and happiness",
+        "authors": ["Morgan Housel"],
+        "publisher": "Harriman House Limited",
+        "publishedDate": "2020-09-08",
+        "description": "<p>Doing well with money isn&rsquo;t necessarily about what you know. It&rsquo;s about how you behave.</p><p>In <b>The Psychology of Money</b>, the author shares 19 short stories exploring the strange ways people think about money.</p>",
+        "industryIdentifiers": [
+          { "type": "ISBN_13", "identifier": "9780857197689" },
+          { "type": "ISBN_10", "identifier": "0857197681" }
+        ],
+        "pageCount": 256,
+        "printType": "BOOK",
+        "categories": ["Business & Economics / Personal Finance / General"],
+        "averageRating": 4.5,
+        "ratingsCount": 120,
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=gbFixture001&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=gbFixture001&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "en",
+        "infoLink": "https://books.google.com/books?id=gbFixture001",
+        "canonicalVolumeLink": "https://books.google.com/books/about/The_Psychology_of_Money.html?id=gbFixture001"
+      },
+      "saleInfo": {
+        "country": "IN",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": { "amount": 399, "currencyCode": "INR" },
+        "retailPrice": { "amount": 299, "currencyCode": "INR" },
+        "buyLink": "https://play.google.com/store/books/details?id=gbFixture001&rdid=book-gbFixture001&rdot=1&source=gbs_api"
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "gbFixture002",
+      "volumeInfo": {
+        "title": "Money Summary Notes",
+        "authors": ["Anon Summaries"],
+        "publishedDate": "2021",
+        "industryIdentifiers": [{ "type": "ISBN_13", "identifier": "9780857197680" }],
+        "categories": ["Business & Economics"],
+        "language": "en"
+      },
+      "saleInfo": { "country": "IN", "saleability": "NOT_FOR_SALE", "isEbook": false }
+    }
+  ]
+}

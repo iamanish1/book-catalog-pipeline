@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Catalog Import Dashboard</title>
+  <style>
+    :root { --bg: #f7f7f5; --panel: #fff; --ink: #1c1c1a; --muted: #6b6b66; --line: #e3e2dd; --accent: #2f5d50; --bad: #a8321f; --warn: #946200; }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg: #151514; --panel: #1f1f1d; --ink: #ecebe6; --muted: #9c9b94; --line: #33332f; --accent: #7fb8a4; --bad: #e0806c; --warn: #d9b25a; }
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; background: var(--bg); color: var(--ink); }
+    header { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; padding: 16px 24px; border-bottom: 1px solid var(--line); }
+    h1 { font-size: 18px; margin: 0; }
+    h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin: 0 0 10px; }
+    main { padding: 20px 24px; display: grid; gap: 20px; max-width: 1200px; }
+    .tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 12px; }
+    .tile, section { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; }
+    .tile .v { font-size: 26px; font-variant-numeric: tabular-nums; font-weight: 600; }
+    .tile .k { color: var(--muted); font-size: 12px; }
+    .tile.bad .v { color: var(--bad); } .tile.warn .v { color: var(--warn); }
+    .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+    table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+    th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { color: var(--muted); font-weight: 500; font-size: 12px; }
+    td.n { text-align: right; }
+    .bar { height: 6px; background: var(--accent); border-radius: 3px; min-width: 2px; }
+    form { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    input { font: inherit; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--ink); }
+    button { font: inherit; padding: 6px 12px; border-radius: 6px; border: 1px solid var(--accent); background: var(--accent); color: var(--panel); cursor: pointer; }
+    button.secondary { background: transparent; color: var(--accent); }
+    .muted { color: var(--muted); } .err { color: var(--bad); }
+    pre { white-space: pre-wrap; word-break: break-word; margin: 0; font-size: 12px; }
+    .scroll { overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Catalog import dashboard</h1>
+    <form id="tokenForm">
+      <input id="token" type="password" placeholder="Admin API token" autocomplete="off" />
+      <button class="secondary" type="submit">Use token</button>
+      <button class="secondary" type="button" id="refresh">Refresh</button>
+    </form>
+  </header>
+  <main>
+    <div id="status" class="muted">Loading…</div>
+    <div class="tiles" id="tiles"></div>
+
+    <section>
+      <h2>Last import</h2>
+      <div id="lastImport" class="scroll"></div>
+    </section>
+
+    <div class="cols">
+      <section><h2>Source distribution</h2><div id="sources"></div></section>
+      <section><h2>Categories</h2><div id="categories"></div></section>
+    </div>
+
+    <div class="cols">
+      <section>
+        <h2>Run import</h2>
+        <form id="syncForm">
+          <input id="target" type="number" min="1" max="100000" value="100" aria-label="Target books" />
+          <button type="submit">Start sync</button>
+        </form>
+        <p class="muted">Runs discovery → fetch → normalize → dedupe → validate → import.</p>
+        <form id="isbnForm">
+          <input id="isbn" placeholder="ISBN-10 or ISBN-13" aria-label="ISBN" />
+          <button type="submit">Import ISBN</button>
+        </form>
+        <pre id="actionOut" class="muted"></pre>
+      </section>
+      <section><h2>Providers</h2><div id="providers"></div></section>
+    </div>
+
+    <section>
+      <h2>Recent jobs</h2>
+      <div id="jobs" class="scroll"></div>
+    </section>
+    <section>
+      <h2>Latest quality issues</h2>
+      <div id="quality" class="scroll"></div>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

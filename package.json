@@ -1,0 +1,41 @@
+{
+  "name": "book-catalog-pipeline",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Source-aware ingestion, normalization and deduplication pipeline for a book-commerce catalog",
+  "type": "module",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "start": "node --no-warnings=ExperimentalWarning dist/api/server.js",
+    "dev": "tsx src/api/server.ts",
+    "books:discover": "tsx src/cli/discover.ts",
+    "books:fetch": "tsx src/cli/fetch.ts",
+    "books:normalize": "tsx src/cli/normalize.ts",
+    "books:dedupe": "tsx src/cli/dedupe.ts",
+    "books:validate": "tsx src/cli/validate.ts",
+    "books:import": "tsx src/cli/import.ts",
+    "books:sync": "tsx src/cli/sync.ts",
+    "books:verify": "tsx src/cli/verify.ts"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/express": "^5.0.6",
+    "@types/node": "^24.19.0",
+    "eslint": "^10.11.0",
+    "globals": "^17.12.0",
+    "tsx": "^4.23.15",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.70.1",
+    "vitest": "^5.0.2"
+  }
+}

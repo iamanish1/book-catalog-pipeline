@@ -1,0 +1,14 @@
+{
+  "$comment": "Publisher/retailer pages the PublisherProvider may read. EMPTY BY DEFAULT. Only add a site after confirming its terms permit automated access for your use, and set terms_reviewed=true with a note. robots.txt is always enforced, requests are throttled, and pages must expose schema.org Book/Product JSON-LD. Use {isbn13} in url_template.",
+  "sites": [
+    {
+      "name": "example-publisher",
+      "enabled": false,
+      "terms_reviewed": false,
+      "terms_note": "Example only. Do not enable without reviewing the site's terms of use.",
+      "url_template": "https://publisher.example.com/books/{isbn13}",
+      "min_delay_ms": 2000,
+      "default_currency": "INR"
+    }
+  ]
+}

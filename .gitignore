@@ -1,0 +1,9 @@
+node_modules/
+dist/
+coverage/
+.env
+.env.*
+!.env.example
+# Pipeline artifacts (raw responses, caches, databases, logs) are reproducible and may be large.
+data/*
+!data/.gitkeep

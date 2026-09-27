@@ -1,0 +1,28 @@
+{
+  "SearchResult": {
+    "TotalResultCount": 1,
+    "Items": [
+      {
+        "ASIN": "0857197681",
+        "DetailPageURL": "https://www.amazon.in/dp/0857197681?tag=example-21",
+        "Images": { "Primary": { "Large": { "URL": "https://m.media-amazon.com/images/I/example._SL500_.jpg" } } },
+        "ItemInfo": {
+          "Title": { "DisplayValue": "The Psychology of Money" },
+          "ByLineInfo": {
+            "Contributors": [{ "Name": "Morgan Housel", "Role": "Author" }],
+            "Manufacturer": { "DisplayValue": "Jaico Publishing House" }
+          },
+          "ExternalIds": { "ISBNs": { "DisplayValues": ["0857197681"] }, "EANs": { "DisplayValues": ["9780857197689"] } },
+          "ContentInfo": {
+            "PagesCount": { "DisplayValue": 252 },
+            "PublicationDate": { "DisplayValue": "2020-09-01T00:00:01Z" },
+            "Languages": { "DisplayValues": [{ "DisplayValue": "English", "Type": "Published" }] }
+          },
+          "Classifications": { "Binding": { "DisplayValue": "Paperback" }, "ProductGroup": { "DisplayValue": "Book" } }
+        },
+        "Offers": { "Listings": [{ "Price": { "Amount": 249, "Currency": "INR", "DisplayAmount": "₹249.00" } }] },
+        "BrowseNodeInfo": { "BrowseNodes": [{ "DisplayName": "Personal Finance" }, { "DisplayName": "Self-Help" }] }
+      }
+    ]
+  }
+}

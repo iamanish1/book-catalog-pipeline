@@ -1,0 +1,23 @@
+{
+  "$comment": "Internal popularity score (0-100). This is NOT an industry ranking; it is a normalized blend of the raw signals we can legitimately observe. Raw signals are always stored alongside the score. Change weights and re-run `npm run books:dedupe`.",
+  "version": "pop-v1",
+  "weights": {
+    "ratings_count": 0.40,
+    "average_rating": 0.20,
+    "edition_count": 0.15,
+    "retailer": 0.15,
+    "discovery": 0.10
+  },
+  "normalization": {
+    "ratings_count_cap": 100000,
+    "edition_count_cap": 500,
+    "readinglog_cap": 200000,
+    "rating_prior_mean": 3.5,
+    "rating_prior_weight": 25
+  },
+  "discovery_mix": {
+    "rank": 0.4,
+    "readinglog": 0.4,
+    "bestseller": 0.2
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "$comment": "Source registry and per-field precedence. Earlier sources win; losing values that differ are recorded as conflicts (never silently overwritten). Sources not listed for a field rank after listed ones.",
+  "version": 1,
+  "sources": [
+    { "name": "open_library", "kind": "bibliographic_api", "base_url": "https://openlibrary.org", "terms_url": "https://openlibrary.org/developers/api", "requires_key": false },
+    { "name": "google_books", "kind": "bibliographic_api", "base_url": "https://www.googleapis.com/books/v1", "terms_url": "https://developers.google.com/books/terms", "requires_key": true },
+    { "name": "amazon", "kind": "commerce_api", "base_url": "https://webservices.amazon.in/paapi5", "terms_url": "https://affiliate-program.amazon.in/help/operating/agreement", "requires_key": true },
+    { "name": "publisher", "kind": "publisher_page", "base_url": null, "terms_url": null, "requires_key": false }
+  ],
+  "work_precedence": {
+    "title": ["open_library", "google_books", "publisher", "amazon"],
+    "authors": ["open_library", "google_books", "publisher", "amazon"],
+    "first_publication_year": ["open_library", "google_books", "publisher", "amazon"],
+    "description": ["google_books", "publisher", "open_library", "amazon"]
+  },
+  "edition_precedence": {
+    "title": ["publisher", "google_books", "open_library", "amazon"],
+    "isbn": ["open_library", "google_books", "publisher", "amazon"],
+    "publisher": ["publisher", "open_library", "google_books", "amazon"],
+    "publication_year": ["open_library", "publisher", "google_books", "amazon"],
+    "language": ["open_library", "google_books", "publisher", "amazon"],
+    "page_count": ["publisher", "open_library", "google_books", "amazon"],
+    "format": ["publisher", "amazon", "open_library", "google_books"],
+    "edition_name": ["publisher", "open_library", "google_books", "amazon"],
+    "front_image": ["publisher", "open_library", "google_books", "amazon"],
+    "price": ["amazon", "publisher", "google_books"]
+  }
+}

@@ -1,0 +1,1398 @@
+{
+  "$comment": "Controlled taxonomy + genre normalization rules. Aliases are matched as whole-word phrases against case/punctuation-folded raw categories/subjects. 'weak' aliases count half. 'exclude' phrases veto a match. 'implies' adds parent genres. Edit freely; re-run `npm run books:dedupe` to re-classify from stored raw data.",
+  "version": 1,
+  "genre_rules": {
+    "source_weights": {
+      "google_books": 1,
+      "amazon": 1,
+      "publisher": 1,
+      "open_library": 0.6,
+      "discovery_hint": 0.5
+    },
+    "per_source_cap": 1.2,
+    "accept_threshold": 1,
+    "implied_factor": 0.9,
+    "max_genres": 5,
+    "nonfiction_genres": [
+      "Non-Fiction",
+      "Biography",
+      "Autobiography",
+      "Memoir",
+      "Self Help",
+      "Personal Development",
+      "Psychology",
+      "Philosophy",
+      "History",
+      "Politics",
+      "Economics",
+      "Business",
+      "Finance",
+      "Management",
+      "Leadership",
+      "Science",
+      "Technology",
+      "Computer Science",
+      "Programming",
+      "Web Development",
+      "Data Science",
+      "Artificial Intelligence",
+      "Machine Learning",
+      "Mathematics",
+      "Engineering",
+      "Medicine",
+      "Law",
+      "Health",
+      "Travel",
+      "Essays",
+      "Education",
+      "Religion & Spirituality",
+      "Cooking",
+      "Art",
+      "Children's Non-Fiction",
+      "Indian History",
+      "Indian Philosophy",
+      "Competitive Exams"
+    ],
+    "$comment": "When a work is classified as Fiction, nonfiction_genres are treated as topics (kept as tags), not genres."
+  },
+  "genres": [
+    {
+      "name": "Fiction",
+      "aliases": [
+        "fiction",
+        "novel",
+        "novels",
+        "fiction general"
+      ],
+      "exclude": [
+        "non fiction",
+        "nonfiction",
+        "juvenile nonfiction",
+        "fiction writing",
+        "fiction authorship",
+        "history and criticism",
+        "fiction technique"
+      ]
+    },
+    {
+      "name": "Non-Fiction",
+      "aliases": [
+        "non fiction",
+        "nonfiction"
+      ]
+    },
+    {
+      "name": "Literary Fiction",
+      "aliases": [
+        "literary fiction",
+        "fiction literary",
+        "literary"
+      ],
+      "weak": [
+        "psychological fiction"
+      ],
+      "exclude": [
+        "literary criticism",
+        "history and criticism",
+        "study guides"
+      ],
+      "implies": [
+        "Fiction"
+      ]
+    },
+    {
+      "name": "Contemporary Fiction",
+      "aliases": [
+        "contemporary fiction",
+        "fiction contemporary women",
+        "domestic fiction",
+        "family life fiction"
+      ],
+      "weak": [
+        "contemporary",
+        "women s fiction",
+        "womens fiction"
+      ],
+      "implies": [
+        "Fiction"
+      ]
+    },
+    {
+      "name": "Historical Fiction",
+      "aliases": [
+        "historical fiction",
+        "fiction historical",
+        "historical novel"
+      ],
+      "exclude": [
+        "juvenile nonfiction"
+      ],
+      "implies": [
+        "Fiction"
+      ]
+    },
+    {
+      "name": "Romance",
+      "aliases": [
+        "romance",
+        "romance fiction",
+        "love stories",
+        "fiction romance",
+        "romantic suspense"
+      ],
+      "weak": [
+        "love"
+      ],
+      "exclude": [
+        "romance languages",
+        "romance philology"
+      ],
+      "implies": [
+        "Fiction"
+      ]
+    },
+    {
+      "name": "Mystery",
+      "aliases": [
+        "mystery",
+        "mystery fiction",
+        "detective and mystery stories",
+        "detective fiction",
+        "fiction mystery",
+        "private investigators",
+        "whodunit"
+      ],
+      "weak": [
+        "detectives",
+        "sherlock holmes"
+      ],
+      "implies": [
+        "Fiction"
+      ]
+    },
+    {
+      "name": "Thriller",
+      "aliases": [
+        "thriller",
+        "thrillers",
+        "suspense",
+        "fiction thrillers",
+        "suspense fiction",
+        "espionage",
+        "spy stories"
+      ],
+      "implies": [
+        "Fiction"
+      ]
+    },
+    {
+      "name": "Crime",
+      "aliases": [
+        "crime fiction",
+        "fiction crime",
+        "crime thriller",
+        "true crime",
+        "noir"
+      ],
+      "weak": [
+        "crime",
+        "murder",
+        "criminals"
+      ],
+      "exclude": [
+        "criminal law",
+        "criminology"
+      ]
+    },
+    {
+      "name": "Fantasy",
+      "aliases": [
+        "fantasy",
+        "fantasy fiction",
+        "fiction fantasy",
+        "epic fantasy",
+        "urban fantasy",
+        "high fantasy",
+        "sword and sorcery"
+      ],
+      "weak": [
+        "magic",
+        "wizards",
+        "dragons",
+        "witches",
+        "elves",
+        "imaginary places"
+      ],
+      "exclude": [
+        "fantasy football",
+        "fantasy sports"
+      ],
+      "implies": [
+        "Fiction"
+      ]
+    },
+    {
+      "name": "Science Fiction",
+      "aliases": [
+        "science fiction",
+        "fiction science fiction",
+        "sci fi",
+        "space opera",
+        "dystopian",
+        "dystopias",
+        "cyberpunk"
+      ],
+      "weak": [
+        "time travel",
+        "robots fiction",
+        "extraterrestrial beings",
+        "space warfare",
+        "life on other planets"
+      ],
+      "exclude": [
+        "history and criticism"
+      ],
+      "implies": [
+        "Fiction"
+      ]
+    },
+    {
+      "name": "Horror",
+      "aliases": [
+        "horror",
+        "horror fiction",
+        "horror tales",
+        "fiction horror",
+        "ghost stories",
+        "gothic fiction"
+      ],
+      "weak": [
+        "vampires",
+        "zombies",
+        "supernatural",
+        "haunted houses"
+      ],
+      "implies": [
+        "Fiction"
+      ]
+    },
+    {
+      "name": "Adventure",
+      "aliases": [
+        "adventure",
+        "adventure stories",
+        "adventure and adventurers",
+        "action and adventure",
+        "fiction action adventure",
+        "sea stories"
+      ],
+      "weak": [
+        "voyages and travels fiction",
+        "survival"
+      ],
+      "implies": [
+        "Fiction"
+      ]
+    },
+    {
+      "name": "Young Adult",
+      "aliases": [
+        "young adult",
+        "young adult fiction",
+        "young adult nonfiction",
+        "teen",
+        "teenagers",
+        "ya fiction"
+      ],
+      "weak": [
+        "high schools",
+        "coming of age"
+      ]
+    },
+    {
+      "name": "Classic Fiction",
+      "aliases": [
+        "classic fiction",
+        "classics",
+        "fiction classics",
+        "classic literature"
+      ],
+      "weak": [
+        "english fiction",
+        "american fiction",
+        "russian fiction",
+        "french fiction"
+      ],
+      "implies": [
+        "Fiction"
+      ]
+    },
+    {
+      "name": "Short Stories",
+      "aliases": [
+        "short stories",
+        "short story",
+        "fiction short stories",
+        "anthologies"
+      ],
+      "implies": [
+        "Fiction"
+      ]
+    },
+    {
+      "name": "Poetry",
+      "aliases": [
+        "poetry",
+        "poems",
+        "verse",
+        "poetry general"
+      ]
+    },
+    {
+      "name": "Drama",
+      "aliases": [
+        "drama",
+        "plays",
+        "tragedies",
+        "comedies",
+        "screenplays"
+      ],
+      "exclude": [
+        "drama therapy"
+      ]
+    },
+    {
+      "name": "Graphic Novels",
+      "aliases": [
+        "graphic novels",
+        "comics and graphic novels",
+        "comic books strips etc",
+        "manga",
+        "comics"
+      ]
+    },
+    {
+      "name": "Humor",
+      "aliases": [
+        "humor",
+        "humour",
+        "humorous fiction",
+        "humorous stories",
+        "wit and humor",
+        "satire"
+      ]
+    },
+    {
+      "name": "Biography",
+      "aliases": [
+        "biography",
+        "biographies",
+        "biography and autobiography",
+        "biography autobiography"
+      ],
+      "weak": [
+        "biographical fiction"
+      ]
+    },
+    {
+      "name": "Autobiography",
+      "aliases": [
+        "autobiography",
+        "autobiographies"
+      ]
+    },
+    {
+      "name": "Memoir",
+      "aliases": [
+        "memoir",
+        "memoirs",
+        "personal memoirs"
+      ]
+    },
+    {
+      "name": "Self Help",
+      "aliases": [
+        "self help",
+        "self help techniques",
+        "self actualization psychology",
+        "self realization",
+        "motivation psychology",
+        "success"
+      ],
+      "weak": [
+        "happiness",
+        "habits",
+        "conduct of life"
+      ]
+    },
+    {
+      "name": "Personal Development",
+      "aliases": [
+        "personal development",
+        "personal growth",
+        "self improvement",
+        "success in business",
+        "time management",
+        "productivity"
+      ],
+      "weak": [
+        "mindfulness",
+        "goal psychology"
+      ]
+    },
+    {
+      "name": "Psychology",
+      "aliases": [
+        "psychology",
+        "cognitive psychology",
+        "social psychology",
+        "behavioral economics",
+        "cognition",
+        "decision making"
+      ],
+      "weak": [
+        "thought and thinking",
+        "emotions",
+        "mind and body",
+        "intuition"
+      ],
+      "exclude": [
+        "psychological fiction"
+      ]
+    },
+    {
+      "name": "Philosophy",
+      "aliases": [
+        "philosophy",
+        "ethics",
+        "stoicism",
+        "metaphysics",
+        "existentialism",
+        "epistemology"
+      ],
+      "weak": [
+        "political science philosophy"
+      ]
+    },
+    {
+      "name": "History",
+      "aliases": [
+        "history",
+        "world history",
+        "military history",
+        "ancient history",
+        "history general"
+      ],
+      "weak": [
+        "civilization",
+        "world war 1939 1945",
+        "world war 1914 1918"
+      ],
+      "exclude": [
+        "historical fiction",
+        "fiction historical",
+        "history and criticism",
+        "natural history"
+      ]
+    },
+    {
+      "name": "Politics",
+      "aliases": [
+        "politics",
+        "political science",
+        "politics and government",
+        "government",
+        "international relations",
+        "democracy"
+      ],
+      "weak": [
+        "public policy"
+      ]
+    },
+    {
+      "name": "Economics",
+      "aliases": [
+        "economics",
+        "business and economics economics",
+        "macroeconomics",
+        "microeconomics",
+        "economic history",
+        "economic policy"
+      ],
+      "weak": [
+        "capitalism",
+        "economic development"
+      ]
+    },
+    {
+      "name": "Business",
+      "aliases": [
+        "business",
+        "business and economics",
+        "entrepreneurship",
+        "marketing",
+        "startups",
+        "new business enterprises",
+        "strategic planning",
+        "sales"
+      ],
+      "weak": [
+        "corporations",
+        "industrial management"
+      ]
+    },
+    {
+      "name": "Finance",
+      "aliases": [
+        "finance",
+        "personal finance",
+        "finance personal",
+        "investing",
+        "investments",
+        "stocks",
+        "wealth",
+        "money",
+        "saving and investment"
+      ],
+      "weak": [
+        "financial"
+      ]
+    },
+    {
+      "name": "Management",
+      "aliases": [
+        "management",
+        "management science",
+        "project management",
+        "organizational behavior",
+        "industrial management"
+      ],
+      "exclude": [
+        "time management"
+      ]
+    },
+    {
+      "name": "Leadership",
+      "aliases": [
+        "leadership",
+        "executive ability",
+        "leaders"
+      ]
+    },
+    {
+      "name": "Science",
+      "aliases": [
+        "science",
+        "popular science",
+        "physics",
+        "biology",
+        "chemistry",
+        "astronomy",
+        "cosmology",
+        "evolution",
+        "natural history",
+        "neuroscience",
+        "genetics"
+      ],
+      "weak": [
+        "nature",
+        "universe",
+        "brain"
+      ],
+      "exclude": [
+        "science fiction",
+        "fiction science fiction",
+        "political science",
+        "computer science",
+        "social science",
+        "social sciences",
+        "library science"
+      ]
+    },
+    {
+      "name": "Technology",
+      "aliases": [
+        "technology",
+        "technology and engineering",
+        "computers",
+        "information technology",
+        "technological innovations"
+      ],
+      "weak": [
+        "internet",
+        "digital"
+      ]
+    },
+    {
+      "name": "Computer Science",
+      "aliases": [
+        "computer science",
+        "computers computer science",
+        "algorithms",
+        "computer algorithms",
+        "data structures",
+        "computer architecture",
+        "operating systems",
+        "computer networks",
+        "computer security"
+      ]
+    },
+    {
+      "name": "Programming",
+      "aliases": [
+        "programming",
+        "computer programming",
+        "software engineering",
+        "software development",
+        "programming languages",
+        "python",
+        "javascript",
+        "java",
+        "c programming language",
+        "object oriented programming"
+      ],
+      "exclude": [
+        "neuro linguistic programming",
+        "java indonesia"
+      ]
+    },
+    {
+      "name": "Web Development",
+      "aliases": [
+        "web development",
+        "web site development",
+        "web programming",
+        "html",
+        "css",
+        "web applications",
+        "react"
+      ]
+    },
+    {
+      "name": "Data Science",
+      "aliases": [
+        "data science",
+        "data mining",
+        "big data",
+        "statistics",
+        "data analysis",
+        "data visualization",
+        "mathematical statistics"
+      ]
+    },
+    {
+      "name": "Artificial Intelligence",
+      "aliases": [
+        "artificial intelligence",
+        "ai",
+        "neural networks computer science",
+        "robotics",
+        "natural language processing"
+      ],
+      "implies": [
+        "Computer Science",
+        "Technology"
+      ]
+    },
+    {
+      "name": "Machine Learning",
+      "aliases": [
+        "machine learning",
+        "deep learning",
+        "reinforcement learning",
+        "neural networks"
+      ],
+      "implies": [
+        "Artificial Intelligence",
+        "Computer Science"
+      ]
+    },
+    {
+      "name": "Mathematics",
+      "aliases": [
+        "mathematics",
+        "algebra",
+        "calculus",
+        "geometry",
+        "number theory",
+        "probabilities",
+        "linear algebra",
+        "discrete mathematics"
+      ]
+    },
+    {
+      "name": "Engineering",
+      "aliases": [
+        "engineering",
+        "electrical engineering",
+        "mechanical engineering",
+        "civil engineering",
+        "electronics",
+        "technology and engineering engineering"
+      ]
+    },
+    {
+      "name": "Medicine",
+      "aliases": [
+        "medicine",
+        "medical",
+        "clinical medicine",
+        "anatomy",
+        "physiology",
+        "pharmacology",
+        "surgery",
+        "nursing"
+      ]
+    },
+    {
+      "name": "Law",
+      "aliases": [
+        "law",
+        "legal",
+        "constitutional law",
+        "criminal law",
+        "jurisprudence",
+        "law india"
+      ]
+    },
+    {
+      "name": "Health",
+      "aliases": [
+        "health",
+        "health and fitness",
+        "nutrition",
+        "diet",
+        "fitness",
+        "wellness",
+        "mental health",
+        "exercise",
+        "yoga"
+      ],
+      "weak": [
+        "sleep",
+        "longevity"
+      ]
+    },
+    {
+      "name": "Travel",
+      "aliases": [
+        "travel",
+        "travel writing",
+        "description and travel",
+        "guidebooks",
+        "voyages and travels"
+      ],
+      "exclude": [
+        "time travel",
+        "voyages and travels fiction"
+      ]
+    },
+    {
+      "name": "Essays",
+      "aliases": [
+        "essays",
+        "american essays",
+        "english essays",
+        "literary collections essays"
+      ]
+    },
+    {
+      "name": "Education",
+      "aliases": [
+        "education",
+        "teaching",
+        "study aids",
+        "study skills",
+        "language arts and disciplines",
+        "textbooks"
+      ]
+    },
+    {
+      "name": "Religion & Spirituality",
+      "aliases": [
+        "religion",
+        "spirituality",
+        "body mind and spirit",
+        "hinduism",
+        "buddhism",
+        "christianity",
+        "islam",
+        "sikhism",
+        "spiritual life",
+        "meditation",
+        "bhagavad gita"
+      ]
+    },
+    {
+      "name": "Cooking",
+      "aliases": [
+        "cooking",
+        "cookbooks",
+        "recipes",
+        "indian cooking",
+        "food"
+      ]
+    },
+    {
+      "name": "Art",
+      "aliases": [
+        "art",
+        "design",
+        "photography",
+        "painting",
+        "architecture",
+        "music"
+      ],
+      "exclude": [
+        "art of war",
+        "state of the art"
+      ]
+    },
+    {
+      "name": "Children's Fiction",
+      "aliases": [
+        "juvenile fiction",
+        "children s fiction",
+        "childrens fiction",
+        "children s stories",
+        "childrens stories",
+        "fairy tales",
+        "fables"
+      ],
+      "weak": [
+        "children s literature",
+        "childrens literature",
+        "animals juvenile fiction"
+      ],
+      "implies": [
+        "Fiction"
+      ]
+    },
+    {
+      "name": "Children's Non-Fiction",
+      "aliases": [
+        "juvenile nonfiction",
+        "juvenile literature",
+        "children s nonfiction"
+      ]
+    },
+    {
+      "name": "Picture Books",
+      "aliases": [
+        "picture books",
+        "picture books for children",
+        "stories in rhyme",
+        "board books"
+      ]
+    },
+    {
+      "name": "Early Readers",
+      "aliases": [
+        "early readers",
+        "readers beginning",
+        "beginning readers",
+        "easy reading materials",
+        "readers primary"
+      ]
+    },
+    {
+      "name": "Middle Grade",
+      "aliases": [
+        "middle grade",
+        "middle school",
+        "chapter books"
+      ]
+    },
+    {
+      "name": "Indian History",
+      "aliases": [
+        "india history",
+        "history india",
+        "indian history",
+        "mughal empire",
+        "india politics and government",
+        "india civilization",
+        "partition of india"
+      ],
+      "implies": [
+        "History"
+      ]
+    },
+    {
+      "name": "Indian Philosophy",
+      "aliases": [
+        "indian philosophy",
+        "philosophy indic",
+        "hindu philosophy",
+        "vedanta",
+        "upanishads",
+        "yoga philosophy"
+      ],
+      "implies": [
+        "Philosophy"
+      ]
+    },
+    {
+      "name": "Indian Literature",
+      "aliases": [
+        "indian literature",
+        "indic literature",
+        "indic fiction",
+        "indian fiction english",
+        "hindi literature",
+        "bengali literature",
+        "tamil literature",
+        "telugu literature",
+        "marathi literature",
+        "urdu literature",
+        "malayalam literature",
+        "kannada literature",
+        "gujarati literature",
+        "punjabi literature",
+        "indian fiction",
+        "hindi fiction",
+        "bengali fiction",
+        "tamil fiction",
+        "telugu fiction",
+        "marathi fiction",
+        "gujarati fiction",
+        "kannada fiction",
+        "malayalam fiction",
+        "punjabi fiction",
+        "urdu fiction",
+        "odia fiction",
+        "assamese fiction",
+        "sanskrit fiction"
+      ],
+      "implies": [
+        "Fiction"
+      ]
+    },
+    {
+      "name": "Competitive Exams",
+      "aliases": [
+        "competitive examinations",
+        "examinations india",
+        "upsc",
+        "civil service examinations",
+        "examinations study guides",
+        "general knowledge",
+        "aptitude tests",
+        "quantitative aptitude",
+        "entrance examinations"
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "name": "Fiction",
+      "subcategories": [
+        {
+          "name": "Literary Fiction",
+          "genres": [
+            "Literary Fiction"
+          ]
+        },
+        {
+          "name": "Contemporary Fiction",
+          "genres": [
+            "Contemporary Fiction"
+          ]
+        },
+        {
+          "name": "Historical Fiction",
+          "genres": [
+            "Historical Fiction"
+          ]
+        },
+        {
+          "name": "Romance",
+          "genres": [
+            "Romance"
+          ]
+        },
+        {
+          "name": "Mystery",
+          "genres": [
+            "Mystery"
+          ]
+        },
+        {
+          "name": "Thriller",
+          "genres": [
+            "Thriller"
+          ]
+        },
+        {
+          "name": "Crime",
+          "genres": [
+            "Crime"
+          ]
+        },
+        {
+          "name": "Fantasy",
+          "genres": [
+            "Fantasy"
+          ]
+        },
+        {
+          "name": "Science Fiction",
+          "genres": [
+            "Science Fiction"
+          ]
+        },
+        {
+          "name": "Horror",
+          "genres": [
+            "Horror"
+          ]
+        },
+        {
+          "name": "Adventure",
+          "genres": [
+            "Adventure"
+          ]
+        },
+        {
+          "name": "Classic Fiction",
+          "genres": [
+            "Classic Fiction"
+          ]
+        },
+        {
+          "name": "Short Stories",
+          "genres": [
+            "Short Stories"
+          ]
+        },
+        {
+          "name": "Poetry & Drama",
+          "genres": [
+            "Poetry",
+            "Drama"
+          ]
+        },
+        {
+          "name": "Graphic Novels",
+          "genres": [
+            "Graphic Novels"
+          ]
+        },
+        {
+          "name": "Humor",
+          "genres": [
+            "Humor"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Non-Fiction",
+      "subcategories": [
+        {
+          "name": "Biography",
+          "genres": [
+            "Biography"
+          ]
+        },
+        {
+          "name": "Autobiography",
+          "genres": [
+            "Autobiography"
+          ]
+        },
+        {
+          "name": "Memoir",
+          "genres": [
+            "Memoir"
+          ]
+        },
+        {
+          "name": "Self Help",
+          "genres": [
+            "Self Help"
+          ]
+        },
+        {
+          "name": "Personal Development",
+          "genres": [
+            "Personal Development"
+          ]
+        },
+        {
+          "name": "Psychology",
+          "genres": [
+            "Psychology"
+          ]
+        },
+        {
+          "name": "Philosophy",
+          "genres": [
+            "Philosophy"
+          ]
+        },
+        {
+          "name": "History",
+          "genres": [
+            "History"
+          ]
+        },
+        {
+          "name": "Politics",
+          "genres": [
+            "Politics"
+          ]
+        },
+        {
+          "name": "Science",
+          "genres": [
+            "Science"
+          ]
+        },
+        {
+          "name": "Health",
+          "genres": [
+            "Health"
+          ]
+        },
+        {
+          "name": "Travel",
+          "genres": [
+            "Travel"
+          ]
+        },
+        {
+          "name": "Essays",
+          "genres": [
+            "Essays"
+          ]
+        },
+        {
+          "name": "Education",
+          "genres": [
+            "Education"
+          ]
+        },
+        {
+          "name": "Religion & Spirituality",
+          "genres": [
+            "Religion & Spirituality"
+          ]
+        },
+        {
+          "name": "Cooking",
+          "genres": [
+            "Cooking"
+          ]
+        },
+        {
+          "name": "Art & Design",
+          "genres": [
+            "Art"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Business & Economics",
+      "subcategories": [
+        {
+          "name": "Business",
+          "genres": [
+            "Business"
+          ]
+        },
+        {
+          "name": "Economics",
+          "genres": [
+            "Economics"
+          ]
+        },
+        {
+          "name": "Finance",
+          "genres": [
+            "Finance"
+          ]
+        },
+        {
+          "name": "Management",
+          "genres": [
+            "Management"
+          ]
+        },
+        {
+          "name": "Leadership",
+          "genres": [
+            "Leadership"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Technology",
+      "subcategories": [
+        {
+          "name": "Computer Science",
+          "genres": [
+            "Computer Science"
+          ]
+        },
+        {
+          "name": "Programming",
+          "genres": [
+            "Programming"
+          ],
+          "priority": 1
+        },
+        {
+          "name": "Web Development",
+          "genres": [
+            "Web Development"
+          ],
+          "priority": 2
+        },
+        {
+          "name": "Data Science",
+          "genres": [
+            "Data Science"
+          ],
+          "priority": 1
+        },
+        {
+          "name": "Artificial Intelligence",
+          "genres": [
+            "Artificial Intelligence"
+          ],
+          "priority": 1
+        },
+        {
+          "name": "Machine Learning",
+          "genres": [
+            "Machine Learning"
+          ],
+          "priority": 2
+        },
+        {
+          "name": "General Technology",
+          "genres": [
+            "Technology"
+          ],
+          "priority": -1
+        }
+      ]
+    },
+    {
+      "name": "Children's",
+      "subcategories": [
+        {
+          "name": "Picture Books",
+          "genres": [
+            "Picture Books"
+          ],
+          "priority": 3
+        },
+        {
+          "name": "Early Readers",
+          "genres": [
+            "Early Readers"
+          ],
+          "priority": 3
+        },
+        {
+          "name": "Middle Grade",
+          "genres": [
+            "Middle Grade"
+          ],
+          "priority": 1
+        },
+        {
+          "name": "Young Adult",
+          "genres": [
+            "Young Adult"
+          ],
+          "priority": 1
+        },
+        {
+          "name": "Children's Fiction",
+          "genres": [
+            "Children's Fiction"
+          ],
+          "priority": 0
+        },
+        {
+          "name": "Educational",
+          "genres": [
+            "Children's Non-Fiction"
+          ],
+          "priority": 0
+        }
+      ]
+    },
+    {
+      "name": "Academic & Professional",
+      "subcategories": [
+        {
+          "name": "Engineering",
+          "genres": [
+            "Engineering"
+          ]
+        },
+        {
+          "name": "Medicine",
+          "genres": [
+            "Medicine"
+          ]
+        },
+        {
+          "name": "Law",
+          "genres": [
+            "Law"
+          ]
+        },
+        {
+          "name": "Mathematics",
+          "genres": [
+            "Mathematics"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Indian Interest",
+      "subcategories": [
+        {
+          "name": "Indian History",
+          "genres": [
+            "Indian History"
+          ],
+          "priority": 2
+        },
+        {
+          "name": "Indian Philosophy",
+          "genres": [
+            "Indian Philosophy"
+          ],
+          "priority": 2
+        },
+        {
+          "name": "Indian Literature",
+          "genres": [
+            "Indian Literature"
+          ],
+          "priority": 2
+        },
+        {
+          "name": "Competitive Exams",
+          "genres": [
+            "Competitive Exams"
+          ],
+          "priority": 3
+        }
+      ]
+    }
+  ],
+  "fallback_categories": {
+    "Fiction": "Fiction",
+    "Non-Fiction": "Non-Fiction"
+  }
+}
